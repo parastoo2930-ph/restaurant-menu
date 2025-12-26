@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Si LOUNGE | منوی دیجیتال</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/matn@latest/dist/font-face.css">
+    <!-- بارگذاری کتابخانه QRCode در بخش head -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.6.0/qrcode.min.js"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <h1>Si <span>LOUNGE</span></h1>
+                </div>
+
+                <!-- Language Dropdown -->
+                <div class="language-dropdown">
+                    <button class="lang-btn" id="languageBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLang">فارسی</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="languageMenu">
+                        <a href="#" data-lang="fa" onclick="changeLanguage('fa')">
+                            <i class="fas fa-flag"></i> فارسی
+                        </a>
+                        <a href="#" data-lang="ku" onclick="changeLanguage('ku')">
+                            <i class="fas fa-flag"></i> کوردی
+                        </a>
+                        <a href="#" data-lang="en" onclick="changeLanguage('en')">
+                            <i class="fas fa-flag"></i> English
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Table Number -->
+                <div class="table-info" onclick="showTableModal()">
+                    <i class="fas fa-chair"></i>
+                    <span id="tableDisplay">میز: ؟</span>
+                </div>
+
+                <!-- Admin Link (Hidden for customers) -->
+                <a href="admin.html" class="admin-link" target="_blank">
+                    <i class="fas fa-user-shield"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 id="welcomeText">به Si LOUNGE خوش آمدید</h2>
+                <p id="subtitleText">تجربه‌ای مدرن از طعم‌های اصیل</p>
+                <div class="scan-hint">
+                    <i class="fas fa-qrcode"></i>
+                    <p>منوی دیجیتال - اسکن و سفارش آسان</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Category Navigation -->
+<nav class="category-nav">
+    <div class="container">
+        <div class="category-tabs">
+            <button class="cat-tab active" data-category="all">
+                <i class="fas fa-bars"></i>
+                <span>همه</span>
+            </button>
+            <button class="cat-tab" data-category="food">
+                <i class="fas fa-utensils"></i>
+                <span>غذاها</span>
+            </button>
+            <button class="cat-tab" data-category="cafe">
+                <i class="fas fa-coffee"></i>
+                <span>کافه بار</span>
+            </button>
+            <button class="cat-tab" data-category="appetizer">
+                <i class="fas fa-seedling"></i>
+                <span>پیش غذا</span>
+            </button>
+            <button class="cat-tab" data-category="dessert">
+                <i class="fas fa-ice-cream"></i>
+                <span>دسر</span>
+            </button>
+            <button class="cat-tab" data-category="drink">
+                <i class="fas fa-wine-glass-alt"></i>
+                <span>نوشیدنی</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    <!-- Menu Items -->
+    <main class="menu-section">
+        <div class="container">
+            <div class="menu-grid" id="menuGrid">
+                <!-- Items will be loaded by JavaScript -->
+            </div>
+            <div class="empty-menu" id="emptyMenu" style="display: none;">
+                <i class="fas fa-utensils"></i>
+                <h3>هنوز محصولی اضافه نشده</h3>
+                <p>مدیریت رستوران به زودی منو را تکمیل می‌کند</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with QR Code -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Restaurant Info -->
+                <div class="footer-info">
+                    <h3>Si LOUNGE</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> مهاباد</p>
+                    <p><i class="fas fa-phone"></i> 0000000000</p>
+                    <p><i class="fas fa-clock"></i> هر روز ۱۲:۰۰ تا ۲۳:۰۰</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- QR Code Section -->
+                <div class="qr-section">
+                    <div class="qr-card">
+                        <div class="qr-code" id="qrCodeContainer">
+                            <!-- QR Code will be generated by JavaScript -->
+                        </div>
+                        <div class="qr-instruction">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>برای مشاهده منو<br>QR کد را اسکن کنید</p>
+                        </div>
+                    </div>
+                    <p class="qr-note">این منو روی تمام دستگاه‌ها قابل مشاهده است</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>دسترسی سریع</h4>
+                    <a href="#"><i class="fas fa-chevron-left"></i> منوی غذا</a>
+                    <a href="#"><i class="fas fa-chevron-left"></i> منوی نوشیدنی</a>
+                    <a href="#"><i class="fas fa-chevron-left"></i> درباره ما</a>
+                    <a href="#"><i class="fas fa-chevron-left"></i> تماس با ما</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© ۲۰۲۴ Si LOUNGE. تمامی حقوق محفوظ است.</p>
+                <p>طراحی شده با <i class="fas fa-heart"></i> برای تجربه‌ای بی‌نظیر</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart-btn" id="cartBtn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> سبد خرید شما</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-body">
+            <div class="cart-empty" id="cartEmpty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>سبد خرید شما خالی است</p>
+                <small>از منو محصول انتخاب کنید</small>
+            </div>
+            
+            <ul class="cart-items" id="cartItems">
+                <!-- Cart items will be loaded here -->
+            </ul>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>مبلغ قابل پرداخت:</span>
+                    <strong id="cartTotal">۰</strong>
+                    <small>تومان</small>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn-clear" onclick="clearCart()">
+                        <i class="fas fa-trash"></i> پاک کردن
+                    </button>
+                    <button class="btn-checkout" onclick="submitOrder()">
+                        <i class="fas fa-paper-plane"></i> ثبت سفارش
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Number Modal -->
+    <div class="modal" id="tableModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-chair"></i> شماره میز</h3>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>لطفاً شماره میز خود را وارد کنید:</p>
+                <input type="text" id="tableInput" placeholder="مثال: ۵ یا A12" maxlength="4">
+                <small>این شماره برای ارسال سفارش شما به آشپزخانه ضروری است</small>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">بعداً</button>
+                <button class="btn-primary" onclick="saveTableNumber()">تأیید شماره میز</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- اسکریپت‌ها -->
+     <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+    <script src="storage.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
